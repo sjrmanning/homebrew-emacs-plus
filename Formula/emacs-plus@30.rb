@@ -117,11 +117,14 @@ class EmacsPlusAT30 < EmacsBase
     args << "--with-xml2"
     args << "--with-gnutls"
 
+    args << "--with-native-full-aot"
+
     args << "--with-native-compilation" if build.with? "native-comp"
     args << "--without-compress-install" if build.without? "compress-install"
 
     ENV.append "CFLAGS", "-g -Og" if build.with? "debug"
     ENV.append "CFLAGS", "-DFD_SETSIZE=10000 -DDARWIN_UNLIMITED_SELECT"
+    ENV.append "CFLAGS", "-mcpu=apple-m1"
 
     # Necessary for libgccjit library discovery
     ENV.append "CPATH", "#{HOMEBREW_PREFIX}/include" if build.with? "native-comp"
