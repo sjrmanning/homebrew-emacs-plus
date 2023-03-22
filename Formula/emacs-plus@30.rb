@@ -179,7 +179,7 @@ class EmacsPlusAT30 < EmacsBase
         end
       end
 
-      system "gmake"
+      system "gmake", "NATIVE_FULL_AOT=1"
 
       system "gmake", "install"
 
